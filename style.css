@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Text:ital,wght@0,300..700;1,300..700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Red Hat Text";
+    display: flex;
+    justify-content: center;
+    background-color: hsl(26, 54%, 97%);
+    padding: 5.4rem 7rem;
+}
+
+.container {
+    display: flex;
+    max-width: 1440px;
+    align-items: start;
+    gap: 2.5%;
+}
+
+.wrapper {
+    width: 67%;
+}
+
+.title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1.75rem;
+}
+
+.items {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-auto-rows: 1fr;
+    gap: 25px;
+}
+
+.item {
+    line-height: 1.5rem;
+}
+
+.item-image {
+    position: relative;
+}
+
+.item-image>img {
+    display: block;
+    width: 100%;
+    border-radius: 10px;
+}
+
+.category {
+    margin-top: 2rem;
+    font-size: .9rem;
+    font-weight: 500;
+    color: hsl(7, 20%, 60%);
+}
+
+.item-name {
+    font-weight: 600;
+}
+
+.price {
+    font-weight: 600;
+    color: hsl(14, 86%, 42%);
+}
+
+.add2cart {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%, 50%);
+    /**/
+    font-size: .85rem;
+    font-weight: 600;
+    background-color: hsl(20, 50%, 98%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 64%;
+    border: 2px solid hsl(14, 25%, 72%);
+    border-radius: 30px;
+    padding: 3.5% 1%;
+    gap: 0.5rem;
+}
+
+.add2cartHover {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%, 50%);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.add2cart>img {
+    width: 12.5%;
+}
+
+.cart {
+    width: 33%;
+    background: white;
+    padding: 2%;
+}
+
+.cart-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: hsl(14, 86%, 42%);
+    margin-bottom: 2rem;
+}
+
+.empty-cart {
+    text-align: center;
+}
+
+.empty-cart p {
+    font-size: .9rem;
+    font-weight: 600;
+    color: hsl(7, 20%, 60%);
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.loaded-cart {
+    display: none;
+}
