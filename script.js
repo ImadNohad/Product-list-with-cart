@@ -11,13 +11,13 @@ for (let item of items) {
               <img src="assets/images/icon-add-to-cart.svg" alt="Add to Cart" class="cart-image" />
               <span>Add to Cart</span>
           </div>
-          <div class="add2cartHover">
+          <div class="add2cartButtons">
               <button type="button">
-                <img src="assets/images/icon-decrement-quantity.svg" alt="Add to Cart" />
+                <div class="icon-quantity"><img src="assets/images/icon-decrement-quantity.svg" alt="Add to Cart" /></div>
               </button>
-              <input class="input-group-field" type="number" name="quantity" value="0">
+              <input class="input-group-field" type="text" name="quantity" value="1" disabled>
               <button type="button" class="button hollow circle" data-quantity="plus" data-field="quantity">
-                <img src="assets/images/icon-increment-quantity.svg" alt="Add to Cart" />
+                <div class="icon-quantity"><img src="assets/images/icon-increment-quantity.svg" alt="Add to Cart" /></div>
               </button>
           </div>
         </div>
