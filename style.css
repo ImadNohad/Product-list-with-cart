@@ -431,6 +431,10 @@ input[type="number"] {
     .tablet {
         display: block;
     }
+
+    .order-item div {
+        width: 60%;
+    }
 }
 
 @media only screen and (max-width: 992px) {
