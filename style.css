@@ -117,7 +117,7 @@ input[type="number"] {
     background-color: hsl(14, 86%, 42%);
     border: 2px solid hsl(14, 86%, 42%);
     border-radius: 30px;
-    width: 64%;
+    width: 11rem;
     position: absolute;
     left: 50%;
     bottom: 0;
@@ -126,7 +126,7 @@ input[type="number"] {
     justify-content: space-around;
     align-items: center;
     gap: 1.75rem;
-    padding: 1rem 1rem;
+    padding: 0.75rem;
     visibility: hidden;
 }
 
