@@ -108,7 +108,8 @@ input[type="number"] {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 11rem;
+    width: 65%;
+    /* width: 11rem; */
     border: 2px solid hsl(14, 25%, 72%);
     border-radius: 30px;
     padding: 0.75rem;
@@ -128,7 +129,8 @@ input[type="number"] {
     background-color: hsl(14, 86%, 42%);
     border: 2px solid hsl(14, 86%, 42%);
     border-radius: 30px;
-    width: 11rem;
+    /* width: 11rem; */
+    width: 65%;
     position: absolute;
     left: 50%;
     bottom: 0;
@@ -302,14 +304,16 @@ input[type="number"] {
 }
 
 .confirm-background {
-    position: absolute;
+    position: fixed;
+    overflow: auto;
     top: 0;
+    left: 0;
     width: 100%;
     display: flex;
     align-items: start;
     justify-content: center;
     background: rgb(0, 0, 0, 0.4);
-    height: 200vh;
+    height: 100%;
     padding-top: 1.5rem;
     visibility: hidden;
 }
@@ -378,7 +382,7 @@ input[type="number"] {
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
     .container {
-        padding: 2rem;
+        padding: 1.5rem;
     }
 
     .items {
@@ -406,6 +410,14 @@ input[type="number"] {
 @media only screen and (max-width: 768px) {
     .items {
         grid-template-columns: 1fr 1fr;
+    }
+
+    .add2cart {
+        width: 50%;
+    }
+
+    .add2cartButtons {
+        width: 50%;
     }
 
     .desktop {
