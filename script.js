@@ -8,7 +8,9 @@ for (let item of items) {
   let divItem = `
     <div class="item">
         <div class="item-image">
-          <img src="${item.image.desktop}">
+          <img class="desktop" src="${item.image.desktop}">
+          <img class="tablet" src="${item.image.tablet}">
+          <img class="mobile" src="${item.image.mobile}">
           <button class="add2cart">
               <img src="assets/images/icon-add-to-cart.svg" alt="Add to Cart" class="cart-image" />  
               <span>Add to Cart</span>
