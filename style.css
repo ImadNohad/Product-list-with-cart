@@ -8,17 +8,28 @@
 
 body {
     font-family: "Red Hat Text";
-    display: flex;
-    justify-content: center;
     background-color: hsl(26, 54%, 97%);
-    padding: 5.4rem 7rem;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
 }
 
 .container {
-    display: flex;
+    margin: 0 auto;
     max-width: 1440px;
+    display: flex;
+    justify-content: center;
     align-items: start;
     gap: 2.5%;
+    position: relative;
+    padding: 5.4rem 7rem;
 }
 
 .wrapper {
@@ -45,6 +56,11 @@ body {
 
 .item-image {
     position: relative;
+}
+
+.item-image.active {
+    border: 3px solid hsl(14, 86%, 42%);
+    border-radius: 13px;
 }
 
 .item-image>img {
@@ -92,20 +108,13 @@ body {
 }
 
 .add2cart:hover {
-    display: none;
-    /* visibility: hidden;
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out, visibility 0s 0.3s; */
-}
-
-.add2cart:hover+.add2cartButtons {
-    visibility: visible;
-    opacity: 1;
+    cursor: pointer;
+    color: hsl(14, 86%, 42%);
 }
 
 .add2cartButtons {
     background-color: hsl(14, 86%, 42%);
-    border: 2px solid hsl(14, 25%, 72%);
+    border: 2px solid hsl(14, 86%, 42%);
     border-radius: 30px;
     width: 64%;
     position: absolute;
@@ -118,7 +127,6 @@ body {
     gap: 1.75rem;
     padding: 3.75% 1%;
     visibility: hidden;
-    opacity: 0;
 }
 
 .add2cartButtons>button {
@@ -128,6 +136,9 @@ body {
     border: none;
     width: 1rem;
     height: 1rem;
+    cursor: pointer;
+    border: 1px solid white;
+    border-radius: 50%;
 }
 
 .add2cartButtons>input {
@@ -138,17 +149,12 @@ body {
     width: 20%;
 }
 
-.add2cartButtons>button {
-    border: 1px solid white;
-    border-radius: 50%;
-}
-
 .add2cartButtons>button:hover {
     background-color: white;
 }
 
 .add2cartButtons>button:hover img {
-    filter: brightness(0) saturate(100%) invert(25%) sepia(43%)
+    filter: invert(50%) sepia(34%) saturate(5174%) hue-rotate(359deg) brightness(80%) contrast(91%);
 }
 
 .icon-quantity {
@@ -167,7 +173,7 @@ body {
     font-size: 1.5rem;
     font-weight: 700;
     color: hsl(14, 86%, 42%);
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 }
 
 .empty-cart {
@@ -184,4 +190,234 @@ body {
 
 .loaded-cart {
     display: none;
+}
+
+.cart-items {
+    margin-bottom: 2rem;
+}
+
+.cart-item {
+    padding: 1.25rem 0;
+    font-size: 0.95rem;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid hsl(13, 31%, 94%);
+}
+
+.cart-item-name {
+    margin-bottom: 0.5rem;
+}
+
+.cart-item-quantity {
+    color: hsl(14, 86%, 42%);
+    margin-right: 1rem;
+    font-weight: 600;
+}
+
+.cart-item-price,
+.enjoy {
+    color: hsl(7, 20%, 60%);
+    margin-right: 0.25rem;
+    font-weight: 500;
+}
+
+.cart-item-total {
+    color: hsl(12, 20%, 44%);
+    font-weight: 600;
+}
+
+.cart-item-remove {
+    color: hsl(7, 20%, 60%);
+    cursor: pointer;
+    padding: 0.15rem;
+    border: 1px solid hsl(7, 20%, 60%);
+    text-decoration: none;
+    border-radius: 50%;
+}
+
+
+.cart-item-remove:hover {
+    filter: hue-rotate(33deg);
+    border-color: hsl(14, 65%, 9%);
+}
+
+.total {
+    font-size: 0.95rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.75rem;
+}
+
+.total-price {
+    font-size: 1.75rem;
+    font-weight: 700;
+}
+
+.carbon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background-color: hsl(13, 31%, 94%);
+    text-align: center;
+    padding: 1rem;
+    margin-bottom: 2rem;
+}
+
+.carbon img {
+    margin-right: 0.5rem;
+}
+
+.confirm-order,
+.start-order {
+    color: white;
+    padding: 1rem 2rem;
+    font-weight: 600;
+    width: 100%;
+    border: none;
+    border-radius: 50px;
+    background: hsl(14, 86%, 42%);
+    cursor: pointer;
+}
+
+.confirm-order:hover,
+.start-order:hover {
+    background: hsl(14, 86%, 30%);
+}
+
+.confirm-background {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    background: rgb(0, 0, 0, 0.4);
+    height: 200vh;
+    padding-top: 1.5rem;
+    visibility: hidden;
+}
+
+.order-confirmed {
+    background: #fff;
+    padding: 2rem;
+    width: 30rem;
+    border-radius: 10px;
+}
+
+.order-summary {
+    background: hsl(20, 50%, 98%);
+    padding: 1rem 1.75rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-radius: 10px;
+}
+
+.order-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-top: 1rem;
+}
+
+.order-items {
+    margin-bottom: 3rem;
+    font-size: 0.75rem;
+}
+
+.order-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid hsl(13, 31%, 94%);
+}
+
+.order-item-name {
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.order-item-total {
+    font-weight: 600;
+    color: hsl(14, 65%, 9%);
+}
+
+.order-item div {
+    width: 70%;
+}
+
+.order-item-image {
+    width: 2.85rem;
+    border-radius: 5px;
+}
+
+.order-total {
+    font-size: 0.95rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .container {
+        padding: 2rem;
+        display: block;
+    }
+
+    .wrapper {
+        width: 100%;
+    }
+
+    .items {
+        display: block;
+    }
+
+    .item {
+        margin-bottom: 1.5rem;
+    }
+
+    .add2cart {
+        width: 50%;
+    }
+
+    
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (max-width: 768px) {
+    .container {
+        display: block;
+    }
+    
+    .items {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .cart {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    .container {
+        padding: 3rem;
+        display: block;
+    }
+
+    .wrapper {
+        width: 100%;
+    }
+
+    .items {
+        margin-bottom: 2rem;
+    }
+
+    .cart {
+        width: 100%;
+    }
 }
