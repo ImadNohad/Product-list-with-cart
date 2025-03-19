@@ -29,7 +29,8 @@ input[type="number"] {
     align-items: start;
     gap: 2.5%;
     position: relative;
-    padding: 5.4rem 7rem;
+    padding: 5rem 4rem;
+    /* padding: 5.4rem 7rem; */
 }
 
 .wrapper {
@@ -366,11 +367,6 @@ input[type="number"] {
 @media only screen and (max-width: 600px) {
     .container {
         padding: 2rem;
-        display: block;
-    }
-
-    .wrapper {
-        width: 100%;
     }
 
     .items {
@@ -384,22 +380,12 @@ input[type="number"] {
     .add2cart {
         width: 50%;
     }
-
-    
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (max-width: 768px) {
-    .container {
-        display: block;
-    }
-    
     .items {
         grid-template-columns: 1fr 1fr;
-    }
-
-    .cart {
-        width: 100%;
     }
 }
 
