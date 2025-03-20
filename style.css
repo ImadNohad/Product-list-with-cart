@@ -419,6 +419,14 @@ input[type="number"] {
         width: 50%;
     }
 
+    .carbon {
+        text-align: left;
+    }
+
+    .carbon img {
+        margin-right: 0+25rem;
+    }
+
     .desktop {
         display: none;
     }
