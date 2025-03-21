@@ -41,7 +41,14 @@ for (let element of add2cart) {
     let quantity = add2cartButtons.querySelector("#quantity")
     let item = items[itemIndex]
     quantity.value = 1
-    cart.push({ id: itemIndex, name: item.name, price: item.price, quantity: parseInt(quantity.value), image: item.image })
+    let added = {
+      id: itemIndex + 1,
+      name: item.name,
+      price: item.price,
+      quantity: parseInt(quantity.value),
+      image: item.image
+    }
+    cart.push(added)
     this.parentElement.classList.add("active")
     updateCart(cart)
   })
@@ -119,17 +126,90 @@ function updateCart(cart) {
   let removeBtns = document.querySelectorAll(".cart-item-remove")
   for (const btn of removeBtns) {
     btn.addEventListener("click", function () {
-      let cartIndex = this.parentElement.getAttribute("data-cart-item")
-      let index = this.getAttribute("data-item")
-      cart.splice(cartIndex, 1)
+      // let cartIndex = this.parentElement.getAttribute("data-cart-item")
+      let index = this.parentElement.getAttribute("data-item")
+      cart = cart.filter(e => e.name != cartItem.name)
       this.parentElement.remove()
       let itemButtons = document.querySelector(`.add2cartButtons[data-item="${index}"]`)
       itemButtons.parentElement.classList.remove("active")
       itemButtons.style.visibility = "hidden"
-      updateCart(cart)
+      updateCart()
     })
   }
 }
+
+// function updateCart(cartItem = {}, remove = false) {
+//   let cartCount = document.querySelector(".cart-item-count")
+//   let sommeItems = cart.reduce(
+//     (acc, value) => acc + value.quantity, 0
+//   );
+//   cartCount.textContent = sommeItems
+
+//   let cartItems = document.querySelector(".cart-items")
+//   let newItem = document.createElement("div")
+//   newItem.setAttribute("data-item", cartItem.id)
+//   newItem.setAttribute("data-cart-item", cart.indexOf(cartItem))
+//   newItem.className = "cart-item"
+//   newItem.innerHTML = `
+//       <div>
+//         <p class="cart-item-name">${cartItem.name}</p>
+//         <p><span class="cart-item-quantity">${cartItem.quantity}x</span><span class="cart-item-price">@ $${cartItem.price?.toFixed(2)}</span> <span class="cart-item-total">$${(cartItem.quantity * cartItem.price).toFixed(2)}</span></p>
+//       </div>
+//       <button type="button" class="cart-item-remove">
+//         <div class="icon-quantity"><img src="assets/images/icon-remove-item.svg" alt="Remove Item" /></div>
+//       </button>
+//   `
+
+//   let found = cart.findIndex(x => x.id == cartItem.id)
+//   if (found != -1) {
+//     let oldItem = cartItems.querySelector(`div[data-item="${cartItem.id}"]`)
+//     cartItems.replaceChild(newItem, oldItem)
+//   } else {
+//     if (!remove) {
+//       cartItems.appendChild(newItem)
+
+//       setTimeout(() => {
+//         newItem.classList.add("slide")
+//       }, 100);
+//     }
+//   }
+
+//   let emptyCart = document.querySelector(".empty-cart")
+//   let loadedCart = document.querySelector(".loaded-cart")
+//   emptyCart.style.display = cartItems.innerHTML.trim() != "" ? "none" : "block"
+//   loadedCart.style.display = cartItems.innerHTML.trim() != "" ? "block" : "none"
+
+//   // cartItems.innerHTML = ""
+//   // for (let item of cart) {
+//   //   cartItems.innerHTML += `
+//   //     <div class="cart-item" data-item="${item.id}" data-cart-item="${cart.indexOf(item)}">
+//   //       <div>
+//   //         <p class="cart-item-name">${item.name}</p>
+//   //         <p><span class="cart-item-quantity">${item.quantity}x</span><span class="cart-item-price">@ $${item.price.toFixed(2)}</span> <span class="cart-item-total">$${(item.quantity * item.price).toFixed(2)}</span></p>
+//   //       </div>
+//   //       <button type="button" class="cart-item-remove">
+//   //         <div class="icon-quantity"><img src="assets/images/icon-remove-item.svg" alt="Remove Item" /></div>
+//   //       </button>
+//   //     </div>
+//   //   `
+//   updateTotal(cart, ".total-price")
+//   // }
+
+//   let removeBtns = document.querySelectorAll(".cart-item-remove")
+//   for (const btn of removeBtns) {
+//     btn.addEventListener("click", function () {
+//       // let cartIndex = this.parentElement.getAttribute("data-cart-item")
+//       let index = this.parentElement.getAttribute("data-item")
+//       cart = cart.filter(e => e.name != cartItem.name)
+//       // cart.splice(cartIndex, 1)
+//       this.parentElement.remove()
+//       let itemButtons = document.querySelector(`.add2cartButtons[data-item="${index}"]`)
+//       itemButtons.parentElement.classList.remove("active")
+//       itemButtons.style.visibility = "hidden"
+//       updateCart()
+//     })
+//   }
+// }
 
 let confirmOrderBtn = document.querySelector(".confirm-order")
 confirmOrderBtn.addEventListener("click", () => confirmOrder(cart))
@@ -164,7 +244,7 @@ function startNewOrder() {
   updateCart(cart)
   let confirmBackground = document.querySelector(".confirm-background")
   confirmBackground.style.visibility = "hidden"
-  let items = document.querySelectorAll(`.item-image.active`)
+  let items = document.querySelectorAll(".item-image.active")
   for (const item of items) {
     item.classList.remove("active")
     item.querySelector(".add2cartButtons").style.visibility = "hidden"
