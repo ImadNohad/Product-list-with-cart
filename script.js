@@ -127,8 +127,6 @@ function updateCart(cart) {
       btn.addEventListener("click", function () {
         let index = this.getAttribute("data-item")
         cart = cart.filter(e => e.id != index)
-        console.log(index);
-        console.log(cart);
         this.parentElement.remove()
         let itemButtons = document.querySelector(`.add2cartButtons[data-item="${index}"]`)
         itemButtons.parentElement.classList.remove("active")
