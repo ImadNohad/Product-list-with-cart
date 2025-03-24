@@ -42,7 +42,7 @@ for (let element of add2cart) {
     let item = items[itemIndex]
     quantity.value = 1
     let added = {
-      id: itemIndex + 1,
+      id: itemIndex,
       name: item.name,
       price: item.price,
       quantity: parseInt(quantity.value),
@@ -121,20 +121,21 @@ function updateCart(cart) {
       </div>
     `
     updateTotal(cart, ".total-price")
-  }
 
-  let removeBtns = document.querySelectorAll(".cart-item-remove")
-  for (const btn of removeBtns) {
-    btn.addEventListener("click", function () {
-      // let cartIndex = this.parentElement.getAttribute("data-cart-item")
-      let index = this.parentElement.getAttribute("data-item")
-      cart = cart.filter(e => e.name != cartItem.name)
-      this.parentElement.remove()
-      let itemButtons = document.querySelector(`.add2cartButtons[data-item="${index}"]`)
-      itemButtons.parentElement.classList.remove("active")
-      itemButtons.style.visibility = "hidden"
-      updateCart()
-    })
+    let removeBtns = document.querySelectorAll(".cart-item-remove")
+    for (const btn of removeBtns) {
+      btn.addEventListener("click", function () {
+        let index = this.getAttribute("data-item")
+        cart = cart.filter(e => e.id != index)
+        console.log(index);
+        console.log(cart);
+        this.parentElement.remove()
+        let itemButtons = document.querySelector(`.add2cartButtons[data-item="${index}"]`)
+        itemButtons.parentElement.classList.remove("active")
+        itemButtons.style.visibility = "hidden"
+        updateCart(cart)
+      })
+    }
   }
 }
 
