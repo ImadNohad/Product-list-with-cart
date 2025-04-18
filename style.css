@@ -56,6 +56,7 @@ input[type="number"] {
 
 .item-image {
     position: relative;
+    transition: border 0.5s ease;
 }
 
 .item-image.active {
@@ -96,7 +97,8 @@ input[type="number"] {
     color: hsl(14, 86%, 42%);
 }
 
-.add2cart {
+.add2cart,
+.add2cartButtons {
     position: absolute;
     left: 50%;
     bottom: 0;
@@ -108,7 +110,6 @@ input[type="number"] {
     justify-content: center;
     align-items: center;
     width: 65%;
-    /* width: 11rem; */
     border: 2px solid hsl(14, 25%, 72%);
     border-radius: 30px;
     padding: 0.75rem;
@@ -126,19 +127,9 @@ input[type="number"] {
 
 .add2cartButtons {
     background-color: hsl(14, 86%, 42%);
-    border: 2px solid hsl(14, 86%, 42%);
-    border-radius: 30px;
-    /* width: 11rem; */
-    width: 65%;
-    position: absolute;
-    left: 50%;
-    bottom: 0;
-    transform: translate(-50%, 50%);
-    display: flex;
     justify-content: space-around;
-    align-items: center;
+    border: 2px solid hsl(14, 86%, 42%);
     gap: 1.75rem;
-    padding: 0.75rem;
     visibility: hidden;
 }
 
@@ -217,8 +208,25 @@ input[type="number"] {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    transform: translateY(-50%);
     border-bottom: 1px solid hsl(13, 31%, 94%);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
 }
+
+.cart-item.animate {
+    transform: translateY(0);
+}
+
+.cart-item.visible {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.cart-item.hidden {
+    opacity: 0;
+}
+
 
 .cart-item-name {
     margin-bottom: 0.5rem;
@@ -322,6 +330,8 @@ input[type="number"] {
     padding: 2rem;
     width: 30rem;
     border-radius: 10px;
+    transform: scale(0.25,0.25);
+    transition: transform 0.5s ease;
 }
 
 .order-summary {

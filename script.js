@@ -52,7 +52,7 @@ for (let element of add2cart) {
     cart.push(added)
 
     this.parentElement.classList.add("active")
-    updateCart()
+    updateCart(true)
   })
 }
 
@@ -82,10 +82,13 @@ for (let e of minus) {
     })
     if (e.nextElementSibling.value == 0) {
       cart = cart.filter(e => e.name != item.name)
+      document.querySelector(`.cart-item[data-item="${itemIndex}"]`).classList.add("hidden")
       this.parentElement.parentElement.classList.remove("active")
       this.parentElement.style.visibility = "hidden"
     }
-    updateCart()
+    setTimeout(() => {
+      updateCart()
+    }, 250);
   })
 }
 
@@ -97,7 +100,7 @@ function updateTotal(element) {
   totalPrice.textContent = `$${total.toFixed(2)}`
 }
 
-function updateCart() {
+function updateCart(add = false) {
   let cartCount = document.querySelector(".cart-item-count")
   let sommeItems = cart.reduce(
     (acc, value) => acc + value.quantity, 0
@@ -111,29 +114,45 @@ function updateCart() {
   let cartItems = document.querySelector(".cart-items")
   cartItems.innerHTML = ""
   for (let item of cart) {
+    let index = cart.indexOf(item)
     cartItems.innerHTML += `
-      <div class="cart-item" data-cart-item="${cart.indexOf(item)}">
+      <div class="cart-item ${(index + 1) < cart.length ? "visible" : ""}" data-item="${item.id}">
         <div>
           <p class="cart-item-name">${item.name}</p>
-          <p><span class="cart-item-quantity">${item.quantity}x</span><span class="cart-item-price">@ $${item.price.toFixed(2)}</span> <span class="cart-item-total">$${(item.quantity * item.price).toFixed(2)}</span></p>
+          <p>
+            <span class="cart-item-quantity">${item.quantity}x</span>
+            <span class="cart-item-price">@ $${item.price.toFixed(2)}</span> 
+            <span class="cart-item-total">$${(item.quantity * item.price).toFixed(2)}</span>
+          </p>
         </div>
-        <button type="button" data-item="${item.id}" class="cart-item-remove">
+        <button type="button" class="cart-item-remove">
           <div class="icon-quantity"><img src="assets/images/icon-remove-item.svg" alt="Remove Item" /></div>
         </button>
       </div>
     `
+    if (add) {
+      setTimeout(() => {
+        document.querySelector(".cart-item:last-child").classList.add("animate")
+        document.querySelector(".cart-item:last-child").classList.add("visible")
+      }, 200);
+    } else {
+      document.querySelector(".cart-item:last-child").classList.add("visible")
+    }
+
     updateTotal(".total-price")
 
     let removeBtns = document.querySelectorAll(".cart-item-remove")
     for (const btn of removeBtns) {
       btn.addEventListener("click", function () {
-        let index = this.getAttribute("data-item")
+        let index = this.parentElement.getAttribute("data-item")
         cart = cart.filter(e => e.id != index)
-        this.parentElement.remove()
+        this.parentElement.classList.add("hidden")
+        setTimeout(() => {
+          updateCart()
+        }, 300);
         let itemButtons = document.querySelector(`.add2cartButtons[data-item="${index}"]`)
         itemButtons.parentElement.classList.remove("active")
         itemButtons.style.visibility = "hidden"
-        updateCart()
       })
     }
   }
@@ -147,7 +166,7 @@ function confirmOrder() {
   orderItems.innerHTML = ""
   for (let item of cart) {
     orderItems.innerHTML += `
-      <div class="order-item" data-cart-item="${cart.indexOf(item)}">
+      <div class="order-item">
         <img class="order-item-image" src="${item.image.thumbnail}" alt="${item.name}" />
         <div>
           <p class="order-item-name">${item.name}</p>
@@ -161,7 +180,9 @@ function confirmOrder() {
   updateTotal(".order-summary .total-price")
 
   let confirmBackground = document.querySelector(".confirm-background")
+  let orderConfirmed = document.querySelector(".order-confirmed")
   confirmBackground.style.visibility = "visible"
+  orderConfirmed.style.transform = "scale(1, 1)"
 }
 
 let newOrderBtn = document.querySelector(".start-order")
